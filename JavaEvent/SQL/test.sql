@@ -7,8 +7,7 @@ INSERT INTO Users(email, password, firstName, lastName, departement) VALUES ('Be
 
 /* INSERT AN ORGANIZATION */
 
-INSERT INTO Creators(creator_type) VALUES('O');
-INSERT INTO Organization(creator_id, name, leader) VALUES ((SELECT creator_id FROM Creators ORDER BY creator_id DESC LIMIT 1), 'Idesys', 3);
+INSERT INTO Organization(name, leader) VALUES ('Idesys', 3);
 
 /* INSERT MEMBER IN AN ORGANIZATION */
 
@@ -21,3 +20,4 @@ INSERT INTO Events(name, summary, creator_id) VALUES ('Gouter chez moi', 'Un bon
 /* EVENT CREATED BY AN ORGANIZATION */
 
 INSERT INTO Events(name, summary, creator_id) VALUES ('Afterwork gros projets', 'On va se faire un max de thunes', 4);
+

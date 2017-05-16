@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS Users (
     UNIQUE (email),
     FOREIGN KEY (creator_id, creator_type)
         REFERENCES Creators (creator_id, creator_type)
+        ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS Events (
@@ -67,6 +68,7 @@ CREATE TABLE IF NOT EXISTS Organization (
         ON DELETE CASCADE,
     FOREIGN KEY (creator_id, creator_type)
         REFERENCES Creators (creator_id, creator_type)
+        ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS Members (
@@ -85,15 +87,25 @@ CREATE TABLE IF NOT EXISTS Members (
 DELIMITER //
 
 CREATE TRIGGER Users_before_insert BEFORE INSERT ON `Users` FOR EACH ROW
-BEGIN
-	INSERT INTO Creators(creator_type) VALUES('U');
-    SET NEW.creator_id = (SELECT creator_id FROM Creators ORDER BY creator_id DESC LIMIT 1);
-END//
+    BEGIN
+      INSERT INTO Creators(creator_type) VALUES('U');
+        SET NEW.creator_id = (SELECT creator_id FROM Creators ORDER BY creator_id DESC LIMIT 1);
+    END//
 
 CREATE TRIGGER Organization_before_insert BEFORE INSERT ON `Organization` FOR EACH ROW
-BEGIN
-	INSERT INTO Creators(creator_type) VALUES('O');
-    SET NEW.creator_id = (SELECT creator_id FROM Creators ORDER BY creator_id DESC LIMIT 1);
-END//
+    BEGIN
+      INSERT INTO Creators(creator_type) VALUES('O');
+        SET NEW.creator_id = (SELECT creator_id FROM Creators ORDER BY creator_id DESC LIMIT 1);
+    END//
 
+
+CREATE TRIGGER Users_after_delete AFTER DELETE ON `Users` FOR EACH ROW
+    BEGIN
+        DELETE FROM Creators WHERE Creators.creator_id = old.creator_id;
+    END//
+
+CREATE TRIGGER Organization_after_delete AFTER DELETE ON `Organization` FOR EACH ROW
+    BEGIN
+        DELETE FROM Creators WHERE Creators.creator_id = old.creator_id;
+    END//
 DELIMITER ;
