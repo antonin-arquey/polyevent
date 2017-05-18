@@ -6,7 +6,7 @@ import java.sql.*;
  * Created by Antonin ARQUEY on 15/05/17.
  */
 public abstract class DAO<T> {
-    public Connection connect = ConnectionMySQL.getInstance();
+    private static Connection connect = ConnectionMySQL.getInstance();
 
     public abstract T find(long id) throws DAOException;
 
@@ -16,8 +16,8 @@ public abstract class DAO<T> {
 
     public abstract void delete(T obj) throws DAOException;
 
-    protected PreparedStatement initializePreparedStatement(String sql, boolean returnGeneratedKeys, Object... objects) throws SQLException {
-        PreparedStatement preparedStatement = this.connect.prepareStatement( sql, returnGeneratedKeys ? Statement.RETURN_GENERATED_KEYS : Statement.NO_GENERATED_KEYS );
+    protected static PreparedStatement initializePreparedStatement(String sql, boolean returnGeneratedKeys, Object... objects) throws SQLException {
+        PreparedStatement preparedStatement = DAO.connect.prepareStatement( sql, returnGeneratedKeys ? Statement.RETURN_GENERATED_KEYS : Statement.NO_GENERATED_KEYS );
         for ( int i = 0; i < objects.length; i++ ) {
             preparedStatement.setObject( i + 1, objects[i] );
         }
@@ -34,11 +34,11 @@ public abstract class DAO<T> {
         }
     }
 
-    public static void close(PreparedStatement preparedStatement){
+    protected static void close(PreparedStatement preparedStatement){
         closeStatement(preparedStatement);
     }
 
-    public static void close(PreparedStatement preparedStatement, ResultSet resultSet){
+    protected static void close(PreparedStatement preparedStatement, ResultSet resultSet){
         closeStatement(preparedStatement);
         if(resultSet != null){
             try{

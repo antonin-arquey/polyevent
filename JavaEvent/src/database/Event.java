@@ -13,14 +13,24 @@ public class Event {
     private Timestamp created_at;
     private Timestamp date_event;
     private HashSet<User> participants;
+    private User creator;
 
-    public Event(long id, String name, String summary, Timestamp created_at, Timestamp date_event, HashSet<User> participants) {
+    public Event(long id, String name, String summary, User creator, Timestamp created_at, Timestamp date_event, HashSet<User> participants) {
         this.id = id;
         this.name = name;
+        this.creator = creator;
         this.summary = summary;
         this.created_at = created_at;
         this.date_event = date_event;
         this.participants = participants;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 
     public String getName() {

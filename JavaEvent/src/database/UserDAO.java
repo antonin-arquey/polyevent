@@ -15,13 +15,15 @@ public class UserDAO extends DAO<User> {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         User user = null;
-        final String query = "SELECT creator_id, email, firstName, lastName, password, departement FROM Users WHERE creator_id = ?";
+        final String query = "SELECT * FROM Users WHERE creator_id = ?";
         try{
             preparedStatement = initializePreparedStatement(query, false, id);
             resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 user = map(resultSet);
+            } else {
+                throw new DAOException("Impossible de trouver cet utilisateur");
             }
         } catch (SQLException e){
             throw new DAOException(e);
@@ -43,6 +45,8 @@ public class UserDAO extends DAO<User> {
 
             if(resultSet != null && resultSet.next()) {
                 user = map(resultSet);
+            } else {
+            throw new DAOException("Impossible de trouver cet utilisateur");
             }
         } catch (SQLException e){
             throw new DAOException(e);
@@ -104,10 +108,23 @@ public class UserDAO extends DAO<User> {
 
     @Override
     public void delete(User obj) throws DAOException {
+        PreparedStatement preparedStatement = null;
+        final String query = "DELETE FROM Users WHERE creator_id = ? LIMIT 1";
 
+        try {
+            preparedStatement = initializePreparedStatement(query, false, obj.getId());
+            int status = preparedStatement.executeUpdate();
+            if (status == 0){
+                throw new DAOException("Impossible de supprimer cet utilisateur");
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            close(preparedStatement);
+        }
     }
 
-    private User map(ResultSet res) throws SQLException{
+    public User map(ResultSet res) throws SQLException{
         User user = new User(res.getLong("creator_id"));
         user.setEmail(res.getString("email"));
         user.setPassword(res.getString("password"));
