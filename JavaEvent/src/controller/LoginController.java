@@ -31,7 +31,7 @@ public class LoginController {
 		this.view.getButConnecter().setAction(this.actionConnection);
 	}
 	
-	//oui
+	//oui oui
 	public LoginView getView() {
 		return this.view;
 	}
