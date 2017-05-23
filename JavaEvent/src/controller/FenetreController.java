@@ -29,4 +29,12 @@ public class FenetreController {
 		this.fenetre.setPanelPrincipale(new EventController(this).getView().getPanel());
 	}
 	
+	public void informationPage() {
+		new InformationController(this);
+	}
+	
+	public void addPage() {
+		this.fenetre.setPanelPrincipale(new AddController(this).getView().getPanel());
+	}
+	
 }

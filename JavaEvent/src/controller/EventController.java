@@ -41,7 +41,7 @@ public class EventController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+			controller.addPage();
 		}
 
 		@Override
@@ -59,7 +59,7 @@ public class EventController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+			controller.informationPage();
 		}
 
 		@Override
