@@ -48,4 +48,9 @@ public abstract class DAO<T> {
             }
         }
     }
+
+    @Override
+    protected void finalize() throws Throwable {
+        DAO.connect.close();
+    }
 }

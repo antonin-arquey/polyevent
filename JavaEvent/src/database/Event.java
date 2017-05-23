@@ -14,8 +14,20 @@ public class Event {
     private Timestamp date_event;
     private HashSet<User> participants;
     private User creator;
+    private String lieu;
 
-    public Event(long id, String name, String summary, User creator, Timestamp created_at, Timestamp date_event, HashSet<User> participants) {
+    public Event(long id, String name, String summary, String lieu, User creator, Timestamp date_event, HashSet<User> participants) {
+        this.id = id;
+        this.name = name;
+        this.creator = creator;
+        this.summary = summary;
+        this.created_at = new Timestamp(date_event.getTime());
+        this.date_event = date_event;
+        this.participants = participants;
+        this.lieu = lieu;
+    }
+
+    public Event(long id, String name, String summary, String lieu, User creator, Timestamp created_at, Timestamp date_event, HashSet<User> participants) {
         this.id = id;
         this.name = name;
         this.creator = creator;
@@ -23,14 +35,42 @@ public class Event {
         this.created_at = created_at;
         this.date_event = date_event;
         this.participants = participants;
+        this.lieu = lieu;
+    }
+
+    public Event(String name, String summary, String lieu, User creator, Timestamp created_at, Timestamp date_event, HashSet<User> participants) {
+        this.id = -1;
+        this.name = name;
+        this.creator = creator;
+        this.summary = summary;
+        this.created_at = created_at;
+        this.date_event = date_event;
+        this.participants = participants;
+        this.lieu = lieu;
     }
 
     public User getCreator() {
         return creator;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public void setCreator(User creator) {
         this.creator = creator;
+    }
+
+    public String getLieu() {
+        return lieu;
+    }
+
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
     }
 
     public String getName() {
@@ -74,6 +114,11 @@ public class Event {
     }
 
     public void addParticipant(User u){
-        this.participants.add(u);
+        if (!this.participants.contains(u))
+            this.participants.add(u);
+    }
+
+    public void removeParticipants(User u){
+        this.participants.remove(u);
     }
 }
