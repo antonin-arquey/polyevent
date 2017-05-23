@@ -23,6 +23,8 @@ public class LoginView implements View {
 	private JPanel panPrinc;
 
 	private JButton butConnecter;
+	private JTextField fieldName;
+	private JTextField fieldPassword;
 
 	/**
 	 * Construit la vue, la lie avec le controleur et met à jour l'interface graphique
@@ -51,32 +53,39 @@ public class LoginView implements View {
 		labMdp.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		//Champ de l'identifiant
-		JTextField fieldIdentifiant = new JTextField();
-		fieldIdentifiant.setPreferredSize(new Dimension(150,25));
-		fieldIdentifiant.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.fieldName = new JTextField();
+		this.fieldName.setPreferredSize(new Dimension(150,25));
+		this.fieldName.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		//Champ du mot de passe
-		JTextField fieldMdp = new JTextField();
-		fieldMdp.setPreferredSize(new Dimension(150,25));
-		fieldMdp.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.fieldPassword = new JTextField();
+		this.fieldPassword.setPreferredSize(new Dimension(150,25));
+		this.fieldPassword.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		//Bouton connecter
-		butConnecter = new JButton("Se connecter");
+		butConnecter = new JButton();
 		butConnecter.setAlignmentX(Component.CENTER_ALIGNMENT);
-		butConnecter.addActionListener(controller);
 
 		this.panPrinc.add(Box.createVerticalStrut(180));
 		this.panPrinc.add(labIdentifiant);
-		this.panPrinc.add(fieldIdentifiant);
+		this.panPrinc.add(this.fieldName);
 		this.panPrinc.add(Box.createVerticalStrut(10));
 		this.panPrinc.add(labMdp);
-		this.panPrinc.add(fieldMdp);
+		this.panPrinc.add(this.fieldPassword);
 		this.panPrinc.add(Box.createVerticalStrut(40));
 		this.panPrinc.add(butConnecter);
 	}
 
 	public JButton getButConnecter() {
 		return this.butConnecter;
+	}
+	
+	public String getName() {
+		return this.fieldName.getText();
+	}
+	
+	public String getPassword() {
+		return this.fieldPassword.getText();
 	}
 
 	@Override

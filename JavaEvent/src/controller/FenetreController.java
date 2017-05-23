@@ -22,10 +22,19 @@ public class FenetreController {
 	 * Affiche la partie authentification de l'application
 	 */
 	public void loginPage() {
-		//On créer d'abord le contrôleur (qui créé lui même la vue)
-		LoginController login = new LoginController(this);
-		//Puis on n'oublie pas de changer le panel affiché sur le JFrame principal
-		fenetre.setPanelPrincipale(login.getView().getPanel());
+		this.fenetre.setPanelPrincipale(new LoginController(this).getView().getPanel());
+	}
+	
+	public void eventPage() {
+		this.fenetre.setPanelPrincipale(new EventController(this).getView().getPanel());
+	}
+	
+	public void informationPage() {
+		new InformationController(this);
+	}
+	
+	public void addPage() {
+		this.fenetre.setPanelPrincipale(new AddController(this).getView().getPanel());
 	}
 	
 }
