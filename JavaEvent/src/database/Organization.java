@@ -18,6 +18,12 @@ public class Organization extends Creator {
         this.members = members;
     }
 
+    public Organization(String name, User leader) {
+        this.name = name;
+        this.leader = leader;
+        this.members = new HashSet<>();
+    }
+
     public String getName() {
         return name;
     }
@@ -43,7 +49,12 @@ public class Organization extends Creator {
     }
 
     public void addMember(User u){
-        this.members.add(u);
+        if (!this.members.contains(u))
+            this.members.add(u);
+    }
+
+    public void removeMember(User u){
+        this.members.remove(u);
     }
 
 }

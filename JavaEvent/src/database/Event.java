@@ -15,16 +15,30 @@ public class Event {
     private HashSet<User> participants;
     private User creator;
     private String lieu;
+    private boolean idChanged;
+
+    public Event(String name, String summary, String lieu, User creator, Timestamp date_event) {
+        this.id = id;
+        this.name = name;
+        this.creator = creator;
+        this.summary = summary;
+        this.created_at = new Timestamp(System.currentTimeMillis());
+        this.date_event = date_event;
+        this.participants = new HashSet<>();
+        this.lieu = lieu;
+        idChanged = true;
+    }
 
     public Event(long id, String name, String summary, String lieu, User creator, Timestamp date_event, HashSet<User> participants) {
         this.id = id;
         this.name = name;
         this.creator = creator;
         this.summary = summary;
-        this.created_at = new Timestamp(date_event.getTime());
+        this.created_at = new Timestamp(System.currentTimeMillis());
         this.date_event = date_event;
         this.participants = participants;
         this.lieu = lieu;
+        idChanged = false;
     }
 
     public Event(long id, String name, String summary, String lieu, User creator, Timestamp created_at, Timestamp date_event, HashSet<User> participants) {
@@ -36,6 +50,7 @@ public class Event {
         this.date_event = date_event;
         this.participants = participants;
         this.lieu = lieu;
+        idChanged = false;
     }
 
     public Event(String name, String summary, String lieu, User creator, Timestamp created_at, Timestamp date_event, HashSet<User> participants) {
@@ -47,6 +62,7 @@ public class Event {
         this.date_event = date_event;
         this.participants = participants;
         this.lieu = lieu;
+        this.idChanged = true;
     }
 
     public User getCreator() {
@@ -58,7 +74,10 @@ public class Event {
     }
 
     public void setId(long id) {
-        this.id = id;
+        if (idChanged) {
+            this.id = id;
+            idChanged = false;
+        }
     }
 
     public void setCreator(User creator) {
