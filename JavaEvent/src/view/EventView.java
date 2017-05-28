@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EmptyBorder;
 
 import controller.EventController;
 
@@ -41,6 +42,7 @@ public class EventView {
 		//Panel haut
 		JPanel panHaut = new JPanel();
 		panHaut.setLayout(new BoxLayout(panHaut, BoxLayout.LINE_AXIS));
+		panHaut.setBorder(new EmptyBorder(10, 0, 0, 0));
 		JLabel labFiltre = new JLabel("Filtrer le lieu :");
 		JComboBox<String> comboFiltre = new JComboBox<String>();
 		this.butAjout = new JButton();
@@ -73,7 +75,7 @@ public class EventView {
 		tabEvent.add("Tous les évènements", this.paneEvent);
 		tabEvent.add("Participations", tabEvent.getTabComponentAt(0));
 		tabEvent.add("Mes évènements", tabEvent.getTabComponentAt(0));
-		tabEvent.setPreferredSize(new Dimension(700,430));
+		tabEvent.setPreferredSize(new Dimension(700,420));
 
 		panMid.add(Box.createVerticalStrut(20));
 		panMid.add(tabEvent);

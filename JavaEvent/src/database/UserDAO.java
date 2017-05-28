@@ -9,6 +9,28 @@ import java.sql.SQLException;
  */
 public class UserDAO extends DAO<User> {
 
+    public User connexion(String email, String password) throws DAOException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        User user = null;
+        final String query = "SELECT creator_id, email, firstName, lastName, password, departement FROM Users WHERE email = ? AND password = ?";
+        try{
+            preparedStatement = initializePreparedStatement(query, false, email, password);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                user = map(resultSet);
+            } else {
+                throw new DAOException("Impossible de trouver cet utilisateur");
+            }
+        } catch (SQLException e){
+            throw new DAOException(e);
+        } finally {
+            close(preparedStatement, resultSet);
+        }
+        return user;
+    }
+	
     @Override
     @SuppressWarnings("Duplicates")
     public User find(long id) throws DAOException {
