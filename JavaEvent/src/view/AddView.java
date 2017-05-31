@@ -28,7 +28,8 @@ public class AddView {
 	AddController controller;
 	private JPanel panPrinc;
 
-	private JLabel eventName;
+	private JTextField eventName;
+	private JTextField fieldLieu;
 	private JTextField fieldLocation;
 	private JTextField fieldDateBegin;
 	private JTextField fieldDateEnd;
@@ -49,7 +50,7 @@ public class AddView {
 		JPanel panHaut = new JPanel();
 		panHaut.setLayout(new GridLayout(1, 1));
 		panHaut.setBorder(new EmptyBorder(20, 0, 0, 0));
-		this.eventName = new JLabel();
+		this.eventName = new JTextField();
 		this.eventName.setFont(new Font("Arial", Font.PLAIN, 40));
 		this.eventName.setHorizontalAlignment(SwingConstants.CENTER);
 		this.eventName.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -64,14 +65,13 @@ public class AddView {
 		panMid1.setLayout(new BoxLayout(panMid1, BoxLayout.X_AXIS));
 		JLabel labLieu = new JLabel("Lieu : ");
 		labLieu.setFont(new Font("Arial", Font.PLAIN, 20));
-		JComboBox<String> comboLieu = new JComboBox<String>();
-		comboLieu.setPreferredSize(new Dimension(180,20));
+		this.fieldLieu = new JTextField();
 		JLabel labAdresse = new JLabel("Adresse : ");
 		labAdresse.setFont(new Font("Arial", Font.PLAIN, 20));
 		this.fieldLocation = new JTextField();
 		this.fieldLocation.setPreferredSize(new Dimension(180,30));
 		panMid1.add(labLieu);
-		panMid1.add(comboLieu);
+		panMid1.add(this.fieldLieu);
 		panMid1.add(Box.createRigidArea(new Dimension(40,0)));
 		panMid1.add(labAdresse);
 		panMid1.add(this.fieldLocation);
@@ -195,8 +195,16 @@ public class AddView {
 		return this.butCancel;
 	}
 	
+	public String getName() {
+		return this.eventName.getText();
+	}
+	
 	public void setName(String name) {
 		this.eventName.setText(name);
+	}
+	
+	public JTextField getFieldLieu() {
+		return this.fieldLieu;
 	}
 
 }

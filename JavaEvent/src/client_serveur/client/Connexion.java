@@ -1,4 +1,4 @@
-package client;
+package client_serveur.client;
 
 import java.net.*;
 import java.util.Scanner;

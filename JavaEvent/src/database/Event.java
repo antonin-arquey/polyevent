@@ -53,14 +53,13 @@ public class Event {
         idChanged = false;
     }
 
-    public Event(String name, String summary, String lieu, User creator, Timestamp created_at, Timestamp date_event, HashSet<User> participants) {
+    public Event(String name, String summary, String lieu, User creator, Timestamp created_at, Timestamp date_event) {
         this.id = -1;
         this.name = name;
         this.creator = creator;
         this.summary = summary;
         this.created_at = created_at;
         this.date_event = date_event;
-        this.participants = participants;
         this.lieu = lieu;
         this.idChanged = true;
     }

@@ -6,6 +6,7 @@ import java.util.Observer;
 
 import javax.swing.AbstractAction;
 
+import database.EventDAO;
 import database.User;
 import model.EventModel;
 import view.EventView;
@@ -28,6 +29,10 @@ public class EventController {
 		this.view.getButAjouter().setAction(this.actionAjouter);
 		this.actionInformations = new Informations();
 		this.view.getButInformations().setAction(this.actionInformations);
+
+		EventDAO events = new EventDAO();
+		this.model.setEvents(events.findAll());
+		this.view.setList(this.model.getList());
 	}
 	
 	public EventView getView() {

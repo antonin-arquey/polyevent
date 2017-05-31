@@ -23,6 +23,8 @@ public class EventView {
 	private EventController controller;
 	private JPanel panPrinc;
 	
+	private Vector<Vector<String>> list;
+	
 	private JButton butAjout;
 	private JButton butInformations;
 	
@@ -67,7 +69,7 @@ public class EventView {
 		labels.add("Date");
 		labels.add("Durée");
 		labels.add("Nb de participants");
-		Vector<String> list = new Vector<String>();
+		this.list = new Vector<Vector<String>>();
 		this.tabEvent = new JTable(list, labels);
 		this.tabEvent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.paneEvent = new JScrollPane(this.tabEvent);
@@ -107,5 +109,9 @@ public class EventView {
 	
 	public JButton getButInformations() {
 		return this.butInformations;
+	}
+	
+	public void setList(Vector<Vector<String>> list) {
+		this.list = list;
 	}
 }

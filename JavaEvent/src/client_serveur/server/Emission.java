@@ -1,4 +1,4 @@
-package server;
+package client_serveur.server;
 
 import java.io.IOException;
 import java.io.PrintWriter;

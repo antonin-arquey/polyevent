@@ -1,5 +1,5 @@
 /* INSERT USERS */
-INSERT INTO Users(email, password, firstName, lastName, departement) VALUES ('jackie@gmail.com', 'bébé', 'Jackie', 'Lopoto', 'ADMINISTRATION');
+INSERT INTO Users(email, password, firstName, lastName, departement) VALUES ('toto@gmail.com', 'toto', 'Jack', 'lopoto', 'ADMINISTRATION');
 
 INSERT INTO Users(email, password, firstName, lastName, departement) VALUES ('jeremilehn@gmail.com', 'bash', 'jérémy', 'lehn', 'INFO');
 
@@ -15,9 +15,9 @@ INSERT INTO Members(user, organization) VALUES (3, 4);
 
 /* EVENT CREATED BY AN USER */
 
-INSERT INTO Events(name, summary, creator_id) VALUES ('Gouter chez moi', 'Un bon petit gouter au calme', 2);
+INSERT INTO Events(name, summary, creator_id, lieu) VALUES ('Gouter chez moi', 'Un bon petit gouter au calme', 2, 'Polytech');
 
 /* EVENT CREATED BY AN ORGANIZATION */
 
-INSERT INTO Events(name, summary, creator_id) VALUES ('Afterwork gros projets', 'On va se faire un max de thunes', 4);
+INSERT INTO Events(name, summary, creator_id, lieu) VALUES ('Afterwork gros projets', 'On va se faire un max de thunes', 4, 'Parc');
 
