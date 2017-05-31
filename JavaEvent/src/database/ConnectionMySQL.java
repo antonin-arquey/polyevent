@@ -11,6 +11,7 @@ public class ConnectionMySQL {
 
     private static final String url = "jdbc:mysql://localhost:3306/Polytech_Event?autoReconnect=true";
 
+
     private static final String user = "java";
 
     private static final String password = "events";
