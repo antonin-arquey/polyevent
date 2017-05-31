@@ -12,6 +12,8 @@ public class EventModel {
 	private User user;
 	private EventController controller;
 	HashSet<Event> events;
+	HashSet<Event> eventsPart;
+	HashSet<Event> eventsMes;
 	
 	public EventModel(EventController controller, User user) {
 		this.controller = controller;
@@ -22,7 +24,45 @@ public class EventModel {
 		this.events = events;
 	}
 	
+	public void setEventsPart(HashSet<Event> events) {
+		this.eventsPart = events;
+	}
+	
+	public void setEventsMes(HashSet<Event> events) {
+		this.eventsMes = events;
+	}
+	
 	public Vector<Vector<String>> getList() {
+		Vector<Vector<String>> ret = new Vector<Vector<String>>();
+		for (Event e: this.events) {
+			Vector<String> ite = new Vector<String>();
+			ite.add(e.getName());
+			ite.add(e.getLieu());
+			ite.add(e.getDate_event().toString());
+			ite.add("Soon");
+			ite.add(Integer.toString(e.getParticipants().size()));
+			
+			ret.add(ite);
+		}
+		return ret;
+	}
+	
+	public Vector<Vector<String>> getListPart() {
+		Vector<Vector<String>> ret = new Vector<Vector<String>>();
+		for (Event e: this.events) {
+			Vector<String> ite = new Vector<String>();
+			ite.add(e.getName());
+			ite.add(e.getLieu());
+			ite.add(e.getDate_event().toString());
+			ite.add("Soon");
+			ite.add(Integer.toString(e.getParticipants().size()));
+			
+			ret.add(ite);
+		}
+		return ret;
+	}
+	
+	public Vector<Vector<String>> getListMes() {
 		Vector<Vector<String>> ret = new Vector<Vector<String>>();
 		for (Event e: this.events) {
 			Vector<String> ite = new Vector<String>();

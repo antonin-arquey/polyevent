@@ -30,7 +30,7 @@ public class UserDAO extends DAO<User> {
         }
         return user;
     }
-	
+		
     @Override
     @SuppressWarnings("Duplicates")
     public User find(long id) throws DAOException {

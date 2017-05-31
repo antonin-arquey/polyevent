@@ -129,7 +129,7 @@ public class EventDAO extends DAO<Event>{
         return new Event(id, name, summary, lieu, creator, created_at, dateEvent, participants);
     }
 
-    private HashSet<User> getParticipants(long id) throws SQLException{
+    public HashSet<User> getParticipants(long id) throws SQLException{
         HashSet<User> participants = new HashSet<>();
         UserDAO userDAO = new UserDAO();
         PreparedStatement preparedStatement = null;
