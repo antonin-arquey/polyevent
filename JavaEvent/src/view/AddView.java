@@ -38,6 +38,7 @@ public class AddView {
 	private JTextField fieldDateEnd;
 	private JSpinner spinnerFinHeures;
 	private JSpinner spinnerFinMinutes;
+	private JSpinner spinPlaces;
 	private JTextArea areaDescription;
 	private JButton butCancel;
 	private JButton butCreate;
@@ -141,7 +142,7 @@ public class AddView {
 		panMid4.setLayout(new BoxLayout(panMid4, BoxLayout.X_AXIS));
 		JLabel labPlaces = new JLabel("Nombre de places : ");
 		labPlaces.setFont(new Font("Arial", Font.PLAIN, 20));
-		JSpinner spinPlaces = new JSpinner(); 
+		this.spinPlaces = new JSpinner(); 
 		spinPlaces.setPreferredSize(new Dimension(60,30));
 		spinPlaces.setMaximumSize(new Dimension(60,30));
 		panMid4.add(labPlaces);
@@ -190,6 +191,14 @@ public class AddView {
 		this.panPrinc.add(panHaut, BorderLayout.NORTH);
 		this.panPrinc.add(panMid, BorderLayout.CENTER);
 		this.panPrinc.add(panBas, BorderLayout.SOUTH);
+	}
+
+	public JSpinner getSpinPlaces() {
+		return spinPlaces;
+	}
+
+	public void setSpinPlaces(JSpinner spinPlaces) {
+		this.spinPlaces = spinPlaces;
 	}
 
 	public JSpinner getSpinnerDebutHeures() {

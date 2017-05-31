@@ -10,6 +10,7 @@ public class Event {
     private long id;
     private String name;
     private String summary;
+    private int max_participants;
     private Timestamp created_at;
     private Timestamp date_event;
     private HashSet<User> participants;
@@ -17,7 +18,7 @@ public class Event {
     private String lieu;
     private boolean idChanged;
 
-    public Event(String name, String summary, String lieu, User creator, Timestamp date_event) {
+    public Event(String name, String summary, String lieu, User creator, Timestamp date_event, int max_participants) {
         this.id = id;
         this.name = name;
         this.creator = creator;
@@ -26,10 +27,11 @@ public class Event {
         this.date_event = date_event;
         this.participants = new HashSet<>();
         this.lieu = lieu;
+        this.max_participants = max_participants;
         idChanged = true;
     }
 
-    public Event(long id, String name, String summary, String lieu, User creator, Timestamp date_event, HashSet<User> participants) {
+    public Event(long id, String name, String summary, String lieu, User creator, Timestamp date_event, HashSet<User> participants, int nb_participants) {
         this.id = id;
         this.name = name;
         this.creator = creator;
@@ -38,10 +40,11 @@ public class Event {
         this.date_event = date_event;
         this.participants = participants;
         this.lieu = lieu;
+        this.max_participants = nb_participants;
         idChanged = false;
     }
 
-    public Event(long id, String name, String summary, String lieu, User creator, Timestamp created_at, Timestamp date_event, HashSet<User> participants) {
+    public Event(long id, String name, String summary, String lieu, User creator, Timestamp created_at, Timestamp date_event, HashSet<User> participants, int nb_participants) {
         this.id = id;
         this.name = name;
         this.creator = creator;
@@ -50,10 +53,11 @@ public class Event {
         this.date_event = date_event;
         this.participants = participants;
         this.lieu = lieu;
+        this.max_participants = nb_participants;
         idChanged = false;
     }
 
-    public Event(String name, String summary, String lieu, User creator, Timestamp created_at, Timestamp date_event) {
+    public Event(String name, String summary, String lieu, User creator, Timestamp created_at, Timestamp date_event, int nb_participants) {
         this.id = -1;
         this.name = name;
         this.creator = creator;
@@ -61,6 +65,7 @@ public class Event {
         this.created_at = created_at;
         this.date_event = date_event;
         this.lieu = lieu;
+        this.max_participants = nb_participants;
         this.idChanged = true;
     }
 
@@ -127,7 +132,15 @@ public class Event {
         return participants;
     }
 
-    public void setParticipants(HashSet<User> participants) {
+    public int getMax_participants() {
+		return max_participants;
+	}
+
+	public void setMax_participants(int nb_participants) {
+		this.max_participants = nb_participants;
+	}
+
+	public void setParticipants(HashSet<User> participants) {
         this.participants = participants;
     }
 

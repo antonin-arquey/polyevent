@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS Users (
 
 CREATE TABLE IF NOT EXISTS Events (
     id INT(15) NOT NULL AUTO_INCREMENT,
+    max_participants INT(5) NOT NULL,
     name VARCHAR(255) NOT NULL,
     summary TEXT,
     creator_id INT(15) NOT NULL,

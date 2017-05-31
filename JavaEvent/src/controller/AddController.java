@@ -48,7 +48,7 @@ public class AddController {
 				    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 				    Date parsedDate = dateFormat.parse(view.getFieldDateBegin().getText() + " " + view.getSpinnerDebutHeures().getValue() + ":" + view.getSpinnerDebutMinutes().getValue());
 				    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-					Event event = new Event(view.getName(), view.getFieldDescription().getText(), view.getFieldLocation().getText(), model.getUser(), timestamp);
+					Event event = new Event(view.getName(), view.getFieldDescription().getText(), view.getFieldLocation().getText(), model.getUser(), timestamp, (int) view.getSpinPlaces().getValue());
 					try {
 						new EventDAO().create(event);
 						controller.eventPage(model.getUser());
