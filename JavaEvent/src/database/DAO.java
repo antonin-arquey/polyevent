@@ -6,7 +6,7 @@ import java.sql.*;
  * Created by Antonin ARQUEY on 15/05/17.
  */
 public abstract class DAO<T> {
-    // Connection vers le serveur MySQL
+        /* Connection vers le serveur MySQL */
     private static Connection connect = ConnectionMySQL.getInstance();
 
     public abstract T find(long id) throws DAOException;
