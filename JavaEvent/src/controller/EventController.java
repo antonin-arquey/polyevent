@@ -200,7 +200,16 @@ public class EventController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			controller.informationPage();
+			int tabbedIndex = view.getTabbedPane().getSelectedIndex();
+			String id = "";
+			if (tabbedIndex == 0) {
+				id = (String) view.getTable().getValueAt(view.getTable().getSelectedRow(), 0);
+			} else if (tabbedIndex == 1) {
+				id = (String) view.getTablePart().getValueAt(view.getTablePart().getSelectedRow(), 0);
+			} else {
+				id = (String) view.getTableMes().getValueAt(view.getTableMes().getSelectedRow(), 0);
+			}
+			controller.informationPage(model.getUser(), new EventDAO().find(Integer.parseInt(id)));
 		}
 
 		@Override

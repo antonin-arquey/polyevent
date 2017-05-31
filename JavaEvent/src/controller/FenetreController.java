@@ -1,5 +1,6 @@
 package controller;
 
+import database.Event;
 import database.User;
 import view.FenetrePrincipale;
 
@@ -30,8 +31,8 @@ public class FenetreController {
 		this.fenetre.setPanelPrincipale(new EventController(this, user).getView().getPanel());
 	}
 	
-	public void informationPage() {
-		new InformationController(this);
+	public void informationPage(User user, Event event) {
+		this.fenetre.setPanelPrincipale(new InformationController(this, user, event).getView().getPanel());
 	}
 	
 	public void addPage(User user) {

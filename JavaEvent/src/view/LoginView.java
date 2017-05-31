@@ -9,6 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controller.LoginController;
@@ -24,7 +25,7 @@ public class LoginView implements View {
 
 	private JButton butConnecter;
 	private JTextField fieldName;
-	private JTextField fieldPassword;
+	private JPasswordField fieldPassword;
 
 	/**
 	 * Construit la vue, la lie avec le controleur et met à jour l'interface graphique
@@ -58,7 +59,8 @@ public class LoginView implements View {
 		this.fieldName.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		//Champ du mot de passe
-		this.fieldPassword = new JTextField();
+		this.fieldPassword = new JPasswordField();
+		this.fieldPassword.setEchoChar('*');
 		this.fieldPassword.setPreferredSize(new Dimension(150,25));
 		this.fieldPassword.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -85,7 +87,7 @@ public class LoginView implements View {
 	}
 	
 	public String getPassword() {
-		return this.fieldPassword.getText();
+		return String.valueOf(this.fieldPassword.getPassword());
 	}
 
 	@Override

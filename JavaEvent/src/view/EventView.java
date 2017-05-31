@@ -76,6 +76,7 @@ public class EventView {
 		this.tabbedEvent = new JTabbedPane();
 		
 		Vector<String> labels = new Vector<String>();
+		labels.add("ID");
 		labels.add("Objet");
 		labels.add("Lieu");
 		labels.add("Date");
@@ -84,6 +85,7 @@ public class EventView {
 		this.list = new Vector<Vector<String>>();
 		
 		Vector<String> labelsPart = new Vector<String>();
+		labelsPart.add("ID");
 		labelsPart.add("Objet");
 		labelsPart.add("Lieu");
 		labelsPart.add("Date");
@@ -92,6 +94,7 @@ public class EventView {
 		this.listPart = new Vector<Vector<String>>();
 		
 		Vector<String> labelsMes = new Vector<String>();
+		labelsMes.add("ID");
 		labelsMes.add("Objet");
 		labelsMes.add("Lieu");
 		labelsMes.add("Date");
