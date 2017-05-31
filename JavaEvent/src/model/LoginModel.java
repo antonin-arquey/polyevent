@@ -3,6 +3,8 @@ package model;
 import java.util.Observable;
 
 import controller.LoginController;
+import database.User;
+import database.UserDAO;
 
 public class LoginModel extends Observable {
 
@@ -12,10 +14,12 @@ public class LoginModel extends Observable {
 		this.controller = controller;
 	}
 	
-	public void Connection(String name, String password) throws Exception {
+	public User Connection(String name, String password) throws Exception {
 		boolean res = true;
+		UserDAO userdao = new UserDAO();
+		User user = userdao.connexion(name, password);
 		if (res) {
-			return;
+			return user;
 		} else {
 			throw new Exception("Identifiant ou mot de passe incorrect");
 		}

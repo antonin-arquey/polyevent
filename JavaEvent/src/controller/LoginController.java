@@ -7,6 +7,7 @@ import java.util.Observer;
 
 import javax.swing.AbstractAction;
 
+import database.User;
 import model.LoginModel;
 import view.LoginView;
 
@@ -44,8 +45,8 @@ public class LoginController {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			try {
-				model.Connection(view.getName(), view.getPassword());
-				controller.eventPage();
+				User user = model.Connection(view.getName(), view.getPassword());
+				controller.eventPage(user);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}

@@ -6,6 +6,7 @@ import java.util.Observer;
 
 import javax.swing.AbstractAction;
 
+import database.User;
 import model.EventModel;
 import view.EventView;
 
@@ -18,10 +19,10 @@ public class EventController {
 	Ajouter actionAjouter;
 	Informations actionInformations;
 	
-	public EventController(FenetreController controller) {
+	public EventController(FenetreController controller, User user) {
 		this.controller = controller;
 		this.view = new EventView(this);
-		this.model = new EventModel(this);
+		this.model = new EventModel(this, user);
 		
 		this.actionAjouter = new Ajouter();
 		this.view.getButAjouter().setAction(this.actionAjouter);
@@ -41,7 +42,7 @@ public class EventController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			controller.addPage();
+			controller.addPage(model.getUser());
 		}
 
 		@Override
