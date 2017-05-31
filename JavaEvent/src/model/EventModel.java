@@ -49,13 +49,13 @@ public class EventModel {
 	
 	public Vector<Vector<String>> getListPart() {
 		Vector<Vector<String>> ret = new Vector<Vector<String>>();
-		for (Event e: this.events) {
+		for (Event e: this.eventsPart) {
 			Vector<String> ite = new Vector<String>();
 			ite.add(e.getName());
 			ite.add(e.getLieu());
 			ite.add(e.getDate_event().toString());
-			ite.add("Soon");
 			ite.add(Integer.toString(e.getParticipants().size()));
+			ite.add("?");
 			
 			ret.add(ite);
 		}
@@ -64,7 +64,7 @@ public class EventModel {
 	
 	public Vector<Vector<String>> getListMes() {
 		Vector<Vector<String>> ret = new Vector<Vector<String>>();
-		for (Event e: this.events) {
+		for (Event e: this.eventsMes) {
 			Vector<String> ite = new Vector<String>();
 			ite.add(e.getName());
 			ite.add(e.getLieu());

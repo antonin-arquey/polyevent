@@ -2,7 +2,6 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -18,6 +17,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -32,7 +33,11 @@ public class AddView {
 	private JTextField fieldLieu;
 	private JTextField fieldLocation;
 	private JTextField fieldDateBegin;
+	private JSpinner spinnerDebutHeures;
+	private JSpinner spinnerDebutMinutes;
 	private JTextField fieldDateEnd;
+	private JSpinner spinnerFinHeures;
+	private JSpinner spinnerFinMinutes;
 	private JTextArea areaDescription;
 	private JButton butCancel;
 	private JButton butCreate;
@@ -85,13 +90,23 @@ public class AddView {
 		this.fieldDateBegin.setMaximumSize(new Dimension(180,30));
 		JLabel labA = new JLabel("  à  ");
 		labA.setFont(new Font("Arial", Font.PLAIN, 20));
-		JComboBox<String> comboHeures = new JComboBox<String>();
-		comboHeures.setPreferredSize(new Dimension(80,30));
-		comboHeures.setMaximumSize(new Dimension(80,30));
+		SpinnerModel model1 = new SpinnerNumberModel(12, 0, 24, 1);   
+		SpinnerModel model2 = new SpinnerNumberModel(0, 0, 59, 1);
+        this.spinnerDebutHeures = new JSpinner(model1);
+		this.spinnerDebutHeures.setPreferredSize(new Dimension(40,30));
+		this.spinnerDebutHeures.setMaximumSize(new Dimension(40,30));
+		JLabel labHeures = new JLabel("h");
+        this.spinnerDebutMinutes = new JSpinner(model2);
+		this.spinnerDebutMinutes.setPreferredSize(new Dimension(40,30));
+		this.spinnerDebutMinutes.setMaximumSize(new Dimension(40,30));
 		panMid2.add(labDebut);
 		panMid2.add(this.fieldDateBegin);
 		panMid2.add(labA);
-		panMid2.add(comboHeures);
+		panMid2.add(this.spinnerDebutHeures);
+		panMid2.add(Box.createHorizontalStrut(5));
+		panMid2.add(labHeures);
+		panMid2.add(Box.createHorizontalStrut(5));
+		panMid2.add(this.spinnerDebutMinutes);
 		panMid2.add(Box.createHorizontalGlue());
 
 		JPanel panMid3 = new JPanel();
@@ -103,13 +118,23 @@ public class AddView {
 		this.fieldDateEnd.setMaximumSize(new Dimension(180,30));
 		JLabel labA2 = new JLabel("  à  ");
 		labA2.setFont(new Font("Arial", Font.PLAIN, 20));
-		JComboBox<String> comboHeures2 = new JComboBox<String>();
-		comboHeures2.setPreferredSize(new Dimension(80,30));
-		comboHeures2.setMaximumSize(new Dimension(80,30));
+		SpinnerModel model3 = new SpinnerNumberModel(12, 0, 24, 1);   
+		SpinnerModel model4 = new SpinnerNumberModel(0, 0, 59, 1);
+        this.spinnerFinHeures = new JSpinner(model3);
+		this.spinnerFinHeures.setPreferredSize(new Dimension(40,30));
+		this.spinnerFinHeures.setMaximumSize(new Dimension(40,30));
+		JLabel labHeures2 = new JLabel("h");
+        this.spinnerFinMinutes = new JSpinner(model4);
+		this.spinnerFinMinutes.setPreferredSize(new Dimension(40,30));
+		this.spinnerFinMinutes.setMaximumSize(new Dimension(40,30));
 		panMid3.add(labFin);
 		panMid3.add(this.fieldDateEnd);
 		panMid3.add(labA2);
-		panMid3.add(comboHeures2);
+		panMid3.add(this.spinnerFinHeures);
+		panMid3.add(Box.createHorizontalStrut(5));
+		panMid3.add(labHeures2);
+		panMid3.add(Box.createHorizontalStrut(5));
+		panMid3.add(this.spinnerFinMinutes);
 		panMid3.add(Box.createHorizontalGlue());
 
 		JPanel panMid4 = new JPanel();
@@ -165,6 +190,22 @@ public class AddView {
 		this.panPrinc.add(panHaut, BorderLayout.NORTH);
 		this.panPrinc.add(panMid, BorderLayout.CENTER);
 		this.panPrinc.add(panBas, BorderLayout.SOUTH);
+	}
+
+	public JSpinner getSpinnerDebutHeures() {
+		return spinnerDebutHeures;
+	}
+
+	public JSpinner getSpinnerDebutMinutes() {
+		return spinnerDebutMinutes;
+	}
+
+	public JSpinner getSpinnerFinHeures() {
+		return spinnerFinHeures;
+	}
+
+	public JSpinner getSpinnerFinMinutes() {
+		return spinnerFinMinutes;
 	}
 
 	public JPanel getPanel() {

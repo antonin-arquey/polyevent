@@ -2,6 +2,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -41,23 +43,30 @@ public class AddController {
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			if (this.isNotSet()) {
-				Event event = new Event(view.getName(), view.getFieldDescription().getText(), view.getFieldLocation().getText(), model.getUser(), new Timestamp(System.currentTimeMillis()));
-				try {
-					new EventDAO().create(event);
-				} catch (DAOException d) {
-					System.out.println(d.getMessage());
+			if (!this.isNotSet()) {
+				try{
+				    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+				    Date parsedDate = dateFormat.parse(view.getFieldDateBegin().getText() + " " + view.getSpinnerDebutHeures().getValue() + ":" + view.getSpinnerDebutMinutes().getValue());
+				    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+					Event event = new Event(view.getName(), view.getFieldDescription().getText(), view.getFieldLocation().getText(), model.getUser(), timestamp);
+					try {
+						new EventDAO().create(event);
+						controller.eventPage(model.getUser());
+					} catch (DAOException d) {
+						System.out.println(d.getMessage());
+					}
+				}catch(Exception e){
+					System.out.println(e.getMessage());
 				}
-				controller.eventPage(model.getUser());
 			}
 		}
 		
 		public boolean isNotSet() {
-			if (view.getName() != "" || view.getFieldLieu().getText() != "" ||
-					view.getFieldDateBegin().getText() != ""
-					|| view.getFieldDateEnd().getText() != "" ||
-					view.getFieldDescription().getText() != "" ||
-					view.getFieldLocation().getText() != "") {
+			if (view.getName().isEmpty() || view.getFieldLieu().getText().isEmpty() ||
+					view.getFieldDateBegin().getText().isEmpty()
+					|| view.getFieldDateEnd().getText().isEmpty() ||
+					view.getFieldDescription().getText().isEmpty() ||
+					view.getFieldLocation().getText().isEmpty()) {
 				return true;
 			}
 			return false;

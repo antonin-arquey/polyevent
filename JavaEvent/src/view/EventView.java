@@ -15,6 +15,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 
 import controller.EventController;
 
@@ -165,4 +167,5 @@ public class EventView {
 	public JTabbedPane getTabbedPane() {
 		return this.tabbedEvent;
 	}
+	
 }
