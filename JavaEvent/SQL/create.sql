@@ -1,9 +1,6 @@
 CREATE DATABASE IF NOT EXISTS Polytech_Event;
 USE Polytech_Event;
 
-CREATE USER 'java'@'localhost' IDENTIFIED BY 'events';
-GRANT ALL ON Polytech_Event.* TO 'java'@'localhost' IDENTIFIED BY 'events';
-
 CREATE TABLE IF NOT EXISTS Creators (
     creator_id INT(15) NOT NULL AUTO_INCREMENT,
     creator_type CHAR(1) NOT NULL
@@ -111,3 +108,5 @@ CREATE TRIGGER Organization_after_delete AFTER DELETE ON `Organization` FOR EACH
         DELETE FROM Creators WHERE Creators.creator_id = old.creator_id;
     END//
 DELIMITER ;
+
+

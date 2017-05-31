@@ -80,7 +80,7 @@ public class InformationView {
 		panBut.setLayout(new BoxLayout(panBut, BoxLayout.X_AXIS));
 		
 		this.butRetour = new JButton("Retour");
-		this.butParticiper = new JButton("Participer");
+		this.butParticiper = new JButton("Inscrire");
 		this.butListe = new JButton("Liste des participants");
 		this.butModifier = new JButton("Modifier");
 		this.butSupprimer = new JButton("Supprimer");
@@ -107,6 +107,46 @@ public class InformationView {
 		this.panelPrinc.add(Box.createVerticalStrut(20));
 		}
 	
+	public JButton getButRetour() {
+		return butRetour;
+	}
+
+	public void setButRetour(JButton butRetour) {
+		this.butRetour = butRetour;
+	}
+
+	public JButton getButListe() {
+		return butListe;
+	}
+
+	public void setButListe(JButton butListe) {
+		this.butListe = butListe;
+	}
+
+	public JButton getButParticiper() {
+		return butParticiper;
+	}
+
+	public void setButParticiper(JButton butParticiper) {
+		this.butParticiper = butParticiper;
+	}
+
+	public JButton getButModifier() {
+		return butModifier;
+	}
+
+	public void setButModifier(JButton butModifier) {
+		this.butModifier = butModifier;
+	}
+
+	public JButton getButSupprimer() {
+		return butSupprimer;
+	}
+
+	public void setButSupprimer(JButton butSupprimer) {
+		this.butSupprimer = butSupprimer;
+	}
+
 	public JPanel getPanel() {
 		return this.panelPrinc;
 	}
