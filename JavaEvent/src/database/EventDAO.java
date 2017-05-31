@@ -116,6 +116,46 @@ public class EventDAO extends DAO<Event>{
         }
     }
 
+    public HashSet<Event> getUserEventParticipate(User user) throws DAOException{
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        final String query = "SELECT * FROM Events, Users, Participants WHERE Participants.user = ? AND Events.id = Participants.event";
+        HashSet<Event> events = new HashSet<>();
+
+        try {
+            preparedStatement = initializePreparedStatement(query, false, user.getId());
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                events.add(map(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            close(preparedStatement, resultSet);
+        }
+        return events;
+    }
+
+    public HashSet<Event> getUserEventCreated(User user) throws DAOException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        final String query = "SELECT * FROM Events WHERE creator_id = ?";
+        HashSet<Event> events = new HashSet<>();
+
+        try {
+            preparedStatement = initializePreparedStatement(query, false, user.getId());
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                events.add(map(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            close(preparedStatement, resultSet);
+        }
+        return events;
+    }
+
     private Event map(ResultSet res) throws SQLException{
         UserDAO userDAO = new UserDAO();
         User creator = userDAO.find(res.getLong("creator_id"));
